@@ -8,7 +8,7 @@ class JJJUnearthedSpider(scrapy.Spider):
     name = "JJJUnearthedSpider"
     spider_modules = ["JJJUnearthed.spiders"]
 
-    def __init__(self, from_index=0, to_index=90723, download_delay=5, *args, **kwargs):
+    def __init__(self, from_index=0, to_index=103607, download_delay=5, *args, **kwargs):
         super(JJJUnearthedSpider, self).__init__(*args, **kwargs)
         self.download_delay = download_delay
         self.start_urls = [
