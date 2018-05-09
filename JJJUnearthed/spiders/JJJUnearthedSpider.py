@@ -22,8 +22,6 @@ class JJJUnearthedSpider(scrapy.Spider):
             "and not(substring(@href, string-length(@href) - string-length('/track') +1) = '/track') "
             "and not(contains(@href, 'review/'))][1]/@href").extract()
 
-        self.logger.info("Parsing page")
-
         for artist_link in artist_links:
             yield scrapy.Request("https://www.triplejunearthed.com" + artist_link, callback=self.get_artist)
 
@@ -65,8 +63,6 @@ class JJJUnearthedSpider(scrapy.Spider):
         tags = response.xpath("//h3[.='Tags'][1]/following-sibling::p/a/text()").extract()
         members = response.xpath("//h3[.='band members'][1]/following-sibling::p/text()").extract_first()
         influences = response.xpath("//h3[.='Influences'][1]/following-sibling::p/text()").extract_first()
-
-        self.logger.info("Parsing artist")
 
         return items.Artist(
             name=name.strip(),
